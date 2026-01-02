@@ -6,7 +6,6 @@ const ExperienciaContent = ({ goToContact, onClose }) => {
   const scrollRef = useRef(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
-  // Escuchar cambios de tamaño para ajustar responsividad
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener('resize', handleResize);
@@ -31,24 +30,6 @@ const ExperienciaContent = ({ goToContact, onClose }) => {
     { id: 7, type: 'cta', title: 'Contacto', subtitle: 'Hablemos', desc: 'Trabajemos juntos.', color: '#fff', icon: <FaArrowRight />, media: '/paisaje.png', action: true }
   ];
 
-  const arrowButtonStyle = {
-    position: 'absolute',
-    top: '50%',
-    transform: 'translateY(-50%)',
-    background: 'rgba(0,0,0,0.6)',
-    color: 'white',
-    border: '1px solid rgba(255,255,255,0.2)',
-    borderRadius: '50%',
-    width: isMobile ? '40px' : '50px',
-    height: isMobile ? '40px' : '50px',
-    display: isMobile ? 'none' : 'flex', // Ocultar flechas en móvil para ganar espacio (se usa swipe)
-    alignItems: 'center',
-    justifyContent: 'center',
-    cursor: 'pointer',
-    zIndex: 20,
-    outline: 'none'
-  };
-
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -62,7 +43,7 @@ const ExperienciaContent = ({ goToContact, onClose }) => {
         boxSizing: 'border-box'
       }}
     >
-      {/* BREADCRUMB AJUSTADO */}
+      {/* BREADCRUMB */}
       <div style={{ 
         display: 'flex', 
         alignItems: 'center', 
@@ -82,9 +63,10 @@ const ExperienciaContent = ({ goToContact, onClose }) => {
         <span style={{ color: 'white', fontWeight: 'bold' }}>Experiencia</span>
       </div>
 
+      {/* Título más compacto para ganar espacio vertical */}
       <h2 style={{ 
-        fontSize: isMobile ? '1.4rem' : '1.8rem', 
-        margin: '0 0 8px 0', 
+        fontSize: isMobile ? '1.2rem' : '1.8rem', 
+        margin: '0 0 5px 0', 
         color: 'white', 
         borderBottom: '1px solid rgba(255,255,255,0.1)',
         paddingBottom: '5px'
@@ -92,13 +74,13 @@ const ExperienciaContent = ({ goToContact, onClose }) => {
         Galería de Proyectos
       </h2>
 
-      {/* WRAPPER SIN ESPACIOS VACÍOS */}
+      {/* WRAPPER DE TARJETAS */}
       <div style={{ position: 'relative', flex: 1, width: '100%', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
         
         {!isMobile && (
           <>
-            <motion.button onClick={() => scroll('left')} style={{ ...arrowButtonStyle, left: '5px' }} whileHover={{ scale: 1.1 }}><FaChevronLeft size={18} /></motion.button>
-            <motion.button onClick={() => scroll('right')} style={{ ...arrowButtonStyle, right: '5px' }} whileHover={{ scale: 1.1 }}><FaChevronRight size={18} /></motion.button>
+            <button onClick={() => scroll('left')} style={{ position: 'absolute', left: '5px', zIndex: 20, background: 'rgba(0,0,0,0.5)', color: 'white', border: 'none', borderRadius: '50%', width: '40px', height: '40px', cursor: 'pointer' }}><FaChevronLeft /></button>
+            <button onClick={() => scroll('right')} style={{ position: 'absolute', right: '5px', zIndex: 20, background: 'rgba(0,0,0,0.5)', color: 'white', border: 'none', borderRadius: '50%', width: '40px', height: '40px', cursor: 'pointer' }}><FaChevronRight /></button>
           </>
         )}
 
@@ -106,10 +88,11 @@ const ExperienciaContent = ({ goToContact, onClose }) => {
             ref={scrollRef}
             style={{
               display: 'flex',
-              gap: isMobile ? '15px' : '20px', 
+              gap: '15px', 
               overflowX: 'auto',
-              padding: '5px 0',
-              height: '95%', 
+              padding: '10px 0',
+              height: isMobile ? 'auto' : '100%', // En móvil que el contenido mande
+              maxHeight: isMobile ? '420px' : 'none', // LIMITAMOS ALTURA EN MÓVIL PARA QUE NO SE CORTE
               alignItems: 'center', 
               scrollbarWidth: 'none', 
               msOverflowStyle: 'none',
@@ -119,47 +102,43 @@ const ExperienciaContent = ({ goToContact, onClose }) => {
             {cards.map((card) => (
             <motion.div
                 key={card.id}
-                whileHover={!isMobile ? { scale: 1.02, y: -5 } : {}}
                 style={{
-                  minWidth: isMobile ? '75vw' : '280px', 
-                  maxWidth: '320px', 
-                  height: '95%', 
-                  background: 'rgba(20,20,20,0.8)',
+                  minWidth: isMobile ? '280px' : '280px', 
+                  width: isMobile ? '280px' : '280px',
+                  height: isMobile ? '380px' : '90%', // ALTURA FIJA EN MÓVIL
+                  background: 'rgba(20,20,20,0.9)',
                   borderRadius: '12px',
                   overflow: 'hidden',
                   display: 'flex',
                   flexDirection: 'column',
-                  border: `1px solid ${card.color}44`, 
+                  border: `1px solid ${card.color}33`, 
                   flexShrink: 0 
                 }}
             >
-                <div style={{ height: '50%', background: '#000', position: 'relative' }}>
+                <div style={{ height: '45%', background: '#000', position: 'relative' }}>
                 {card.type === 'video' ? (
                     <iframe width="100%" height="100%" src={`https://www.youtube.com/embed/${card.videoId}`} title={card.title} frameBorder="0" allowFullScreen />
                 ) : (
                     <img src={card.media} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 )}
-                <div style={{ position: 'absolute', top: '8px', right: '8px', background: 'rgba(0,0,0,0.7)', padding: '6px', borderRadius: '50%', color: card.color, fontSize: '0.8rem' }}>
-                    {card.icon}
-                </div>
                 </div>
 
-                <div style={{ height: '50%', padding: '12px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                <div style={{ flex: 1, padding: '12px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                   <div>
                       <h3 style={{ margin: 0, color: card.color, fontSize: '1rem' }}>{card.title}</h3>
-                      <h4 style={{ margin: '3px 0', color: '#888', fontSize: '0.7rem' }}>{card.subtitle}</h4>
-                      <p style={{ fontSize: '0.8rem', color: '#ccc', lineHeight: '1.2', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
-                      {card.desc}
+                      <h4 style={{ margin: '2px 0', color: '#888', fontSize: '0.7rem' }}>{card.subtitle}</h4>
+                      <p style={{ fontSize: '0.75rem', color: '#ccc', lineHeight: '1.2', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
+                        {card.desc}
                       </p>
                   </div>
 
                   {card.action ? (
-                      <button onClick={goToContact} style={{ width: '100%', padding: '8px', background: '#e74c3c', border: 'none', color: 'white', borderRadius: '6px', fontWeight: 'bold', cursor: 'pointer', fontSize: '0.85rem' }}>
-                      Contacto
+                      <button onClick={goToContact} style={{ width: '100%', padding: '8px', background: '#e74c3c', border: 'none', color: 'white', borderRadius: '6px', fontWeight: 'bold', fontSize: '0.8rem' }}>
+                        Contacto
                       </button>
                   ) : card.link && (
-                      <a href={card.link} target="_blank" rel="noopener noreferrer" style={{ textAlign: 'center', width: '100%', padding: '6px', border: `1px solid ${card.color}`, color: card.color, borderRadius: '6px', textDecoration: 'none', fontSize: '0.8rem', fontWeight: 'bold' }}>
-                      Ver Proyecto
+                      <a href={card.link} target="_blank" rel="noopener noreferrer" style={{ textAlign: 'center', width: '100%', padding: '6px', border: `1px solid ${card.color}`, color: card.color, borderRadius: '6px', textDecoration: 'none', fontSize: '0.75rem', fontWeight: 'bold' }}>
+                        Ver Proyecto
                       </a>
                   )}
                 </div>
@@ -167,6 +146,8 @@ const ExperienciaContent = ({ goToContact, onClose }) => {
             ))}
         </div>
       </div>
+      {/* ESPACIADOR FINAL PARA MÓVIL */}
+      {isMobile && <div style={{ height: '20px' }}></div>}
     </motion.div>
   );
 };
