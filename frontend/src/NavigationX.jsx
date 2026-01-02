@@ -164,39 +164,69 @@ const NavigationX = () => {
       </AnimatePresence>
 
       {/* MODAL DE FINALIZACIÓN */}
+      {/* --- MODAL DE FINALIZACIÓN --- */}
       <AnimatePresence>
         {showFinale && (
           <motion.div
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             style={{
               position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh',
-              background: 'rgba(0,0,0,0.92)', zIndex: 100,
+              background: 'rgba(0,0,0,0.85)', zIndex: 100,
               display: 'flex', justifyContent: 'center', alignItems: 'center',
-              backdropFilter: 'blur(8px)', padding: '20px'
+              backdropFilter: 'blur(10px)'
             }}
           >
             <motion.div
-              initial={{ scale: 0.9, y: 20 }} animate={{ scale: 1, y: 0 }}
+              initial={{ scale: 0.8, y: 50 }}
+              animate={{ scale: 1, y: 0 }}
               style={{
                 background: 'linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d)',
-                padding: 'min(40px, 8vw)', borderRadius: '24px', maxWidth: '500px', width: '100%', textAlign: 'center',
-                color: 'white', boxShadow: '0 20px 40px rgba(0,0,0,0.4)'
+                padding: '40px', borderRadius: '20px', maxWidth: '600px', textAlign: 'center',
+                color: 'white', boxShadow: '0 20px 50px rgba(0,0,0,0.5)',
+                border: '1px solid rgba(255,255,255,0.2)'
               }}
             >
-              <div style={{ fontSize: '3rem', marginBottom: '15px' }}>🚀</div>
-              <h2 style={{ fontSize: 'clamp(1.5rem, 5vw, 2.2rem)', margin: '0 0 15px 0' }}>¡Recorrido Completo!</h2>
-              <p style={{ fontSize: 'clamp(0.9rem, 3vw, 1.1rem)', lineHeight: '1.5', marginBottom: '25px', opacity: 0.9 }}>
-                "Estoy recién empezando en este mundo... <br/><b>¡Imagínense cuando sea Senior!</b>"
-              </p>
-              <button 
-                onClick={() => { setShowFinale(false); setSelectedId('contacto'); }} 
-                style={{ background: 'white', color: '#b21f1f', border: 'none', padding: '14px 28px', borderRadius: '50px', fontWeight: 'bold', cursor: 'pointer', fontSize: '1rem' }}
+              <motion.div 
+                animate={{ rotate: [0, 10, -10, 0] }} 
+                transition={{ duration: 2, repeat: Infinity }}
+                style={{ fontSize: '4rem', marginBottom: '20px' }}
               >
-                ¡Trabajemos Juntos!
+                🚀
+              </motion.div>
+              
+              <h2 style={{ fontSize: '2.5rem', margin: '0 0 20px 0', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
+                ¡Recorrido Completo!
+              </h2>
+              
+              <p style={{ fontSize: '1.2rem', lineHeight: '1.6', marginBottom: '30px', color: '#eee' }}>
+                "Estoy recién empezando en este mundo, pero con mucha energía y pasión. 
+                <br /><br />
+                <strong>Si esto es lo que hago ahora... ¡Imagínense cuando sea Senior!</strong> 
+                <br /><br />
+                Estamos hechos para cosas grandes."
+              </p>
+
+              <button 
+                onClick={() => { 
+                    setShowFinale(false); 
+                    setSelectedId('contacto'); // Lleva a contacto
+                }} 
+                style={{
+                  background: 'white', color: '#b21f1f', border: 'none',
+                  padding: '15px 30px', borderRadius: '50px', fontSize: '1.1rem', fontWeight: 'bold',
+                  cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '10px', margin: '0 auto',
+                  boxShadow: '0 5px 15px rgba(0,0,0,0.2)'
+                }}
+              >
+                <FaHandshake /> ¡Trabajemos Juntos!
               </button>
-              <div style={{ marginTop: '20px', fontSize: '0.8rem', opacity: 0.6, cursor: 'pointer', textDecoration: 'underline' }} onClick={() => setShowFinale(false)}>
-                Seguir explorando
+              
+              <div style={{ marginTop: '20px', fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)', cursor: 'pointer', textDecoration: 'underline' }} onClick={() => setShowFinale(false)}>
+                Cerrar y seguir explorando
               </div>
+
             </motion.div>
           </motion.div>
         )}
