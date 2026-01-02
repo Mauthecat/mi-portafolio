@@ -221,8 +221,26 @@ const ShowcaseContent = ({ onClose }) => {
               <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ff5f56' }}></div>
               <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ffbd2e' }}></div>
             </div>
-            <div style={{ marginTop: '15px', height: 'calc(100% - 15px)', width: '100%' }}>
-              {demos[currentIndex].component}
+            <div
+              style={{
+                marginTop: '20px',
+                height: 'calc(100% - 20px)',
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'stretch'
+              }}
+            >
+              <div
+                style={{
+                  width: '100%',
+                  maxWidth: '100%',
+                  height: '100%',
+                  display: 'flex'
+                }}
+              >
+                {demos[currentIndex].component}
+              </div>
             </div>
           </div>
         </div>
