@@ -163,7 +163,7 @@ const PerfilContent = ({ onClose }) => {
       </div>
 
       {/* ESPACIADOR FINAL: La clave para que el margin funcione siempre */}
-      <div style={{ height: '4px', width: '100%', flexShrink: 0 }}></div>
+      <div style={{ height: '4px', width: '20%', flexShrink: 0 }}></div>
 
       {!isMobile && (
         <motion.div 
@@ -171,7 +171,7 @@ const PerfilContent = ({ onClose }) => {
             transition={{ delay: 0.5, type: 'spring' }}
             style={{ position: 'absolute', bottom: '10px', right: '10px', width: '120px', zIndex: 1, pointerEvents: 'none' }}
         >
-            <img src="/gif2.gif" alt="Gato" style={{ width: '100%', height: 'auto', flexShrink: 0 }} />
+            <img src="/gif2.gif" alt="Gato" style={{ width: '100%', height: 'auto' }} />
         </motion.div>
       )}
     </motion.div>
