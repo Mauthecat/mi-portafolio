@@ -171,7 +171,7 @@ const PerfilContent = ({ onClose }) => {
             transition={{ delay: 0.5, type: 'spring' }}
             style={{ position: 'absolute', bottom: '10px', right: '10px', width: '120px', zIndex: 1, pointerEvents: 'none' }}
         >
-            <img src="/gif2.gif" alt="Gato" style={{ width: '100%', height: 'auto' }} />
+            <img src="/gif2.gif" alt="Gato" style={{ width: '100%', height: 'auto', flexShrink: 0 }} />
         </motion.div>
       )}
     </motion.div>
