@@ -77,7 +77,7 @@ const ExperienciaContent = ({ goToContact, onClose }) => {
       type: 'soft',
       title: 'Visión',
       subtitle: 'Sustentabilidad',
-      desc: 'Mis experiencias de vida me hacen poseer un gran amor por el entorno, el cual siempre me lleva a pensar desde distintos prismas, sin olvidar la Eficiencia y Responsabilidad. ',
+      desc: 'Mis amor por el entorno y el autoconocimiento, me lleva a pensar desde distintos prismas, sin olvidar la Eficiencia y Responsabilidad. ',
       color: '#16a085',
       icon: <FaLeaf />,
       media: '/vision.png'
