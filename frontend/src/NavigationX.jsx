@@ -201,11 +201,11 @@ const NavigationX = () => {
               </h2>
               
               <p style={{ fontSize: '1.2rem', lineHeight: '1.6', marginBottom: '30px', color: '#eee' }}>
-                "Estoy recién empezando en este mundo, pero con mucha energía y pasión. 
+                Estoy recién empezando en este mundo, pero con mucha energía y pasión. 
                 <br /><br />
                 <strong>Si esto es lo que hago ahora... ¡Imagínense cuando sea Senior!</strong> 
                 <br /><br />
-                Estamos hechos para cosas grandes."
+                Estamos hechos para cosas grandes.
               </p>
 
               <button 
