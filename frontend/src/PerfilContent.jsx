@@ -141,9 +141,12 @@ const PerfilContent = ({ onClose }) => {
             flexDirection: 'column',
             minHeight: isMobile ? '350px' : 'auto',
             order: isMobile ? 2 : 1,
-            marginBottom: isMobile ? '20px' : '0'
+            marginBottom: isMobile ? '20px' : '0',
+            // AGREGA ESTO:
+            marginLeft: isMobile ? '0' : '10px', // Da un respiro entre la bio y el CV en PC
+            marginTop: isMobile ? '10px' : '0',   // Da un respiro arriba en Móvil
           }}
-        >
+          >
           <div style={{ padding: '12px', background: 'rgba(0,0,0,0.4)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#ccc', fontWeight: 'bold', fontSize: '0.8rem' }}>
                 <FaFilePdf style={{ color: '#e74c3c'}} /> CV
