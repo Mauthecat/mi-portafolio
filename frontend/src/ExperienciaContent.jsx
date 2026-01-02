@@ -52,7 +52,7 @@ const ExperienciaContent = ({ goToContact, onClose }) => {
       type: 'video', 
       title: 'FoodStream',
       subtitle: 'App Android IoT',
-      desc: 'Como proyecto final del Ramo de Desarrollo IOT, asi como del ramo "Ingenieria de Software" cree un sistema de Control de dispensadores para gatos. (android studio + firebase + esp32)',
+      desc: 'Como proyecto final del Ramo Desarrollo IOT, asi como del ramo "Ing de Software" cree un sistema de Control de dispensadores para gatos. (android studio + firebase + esp32)',
       color: '#27ae60',
       icon: <FaYoutube />,
       videoId: 'lXWkZpCrunY' 
@@ -82,7 +82,7 @@ const ExperienciaContent = ({ goToContact, onClose }) => {
       type: 'soft',
       title: 'Visión',
       subtitle: 'Sustentabilidad',
-      desc: 'Mis amor por el entorno y el autoconocimiento, me lleva a pensar desde distintos prismas, sin olvidar la Eficiencia y Responsabilidad. ',
+      desc: 'Mi amor por el entorno y el autoconocimiento, me lleva a pensar desde distintos prismas, sin olvidar la Eficiencia y Responsabilidad. ',
       color: '#16a085',
       icon: <FaLeaf />,
       media: '/vision.png'
