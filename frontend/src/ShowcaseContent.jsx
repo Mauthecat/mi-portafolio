@@ -91,7 +91,7 @@ const EcommerceDemo = () => {
           gap: '2%',
           width: '100%',
           boxSizing: 'border-box'
-          }}>
+        }}>
           <h4 style={{ margin: '0 0 10px 0', color: '#333', borderBottom: '2px solid #eee', paddingBottom: '5px' }}>Categorías</h4>
           <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontSize: '0.9rem', color: '#666', lineHeight: '2' }}>
             <li style={{ cursor: 'pointer' }}>👟 Zapatillas</li>
@@ -385,8 +385,8 @@ const ShowcaseContent = ({ onClose }) => {
       boxSizing: 'border-box',
       display: 'flex',
       flexDirection: 'column',
-      padding: '0 2%'
-    }}>
+      alignItems: 'center'   // 👈 CLAVE
+      }}>
 
       {/* BREADCRUMB */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'rgba(255,255,255,0.4)', fontSize: '0.9rem', marginBottom: '10px', marginTop: '-10px' }}>
