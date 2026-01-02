@@ -141,7 +141,7 @@ const PerfilContent = ({ onClose }) => {
             flexDirection: 'column',
             minHeight: isMobile ? '350px' : 'auto',
             order: isMobile ? 2 : 1,
-            marginBottom: isMobile ? '20px' : '0',
+            marginBottom: '20px',
             // AGREGA ESTO:
             marginLeft: isMobile ? '0' : '10px', // Da un respiro entre la bio y el CV en PC
             marginTop: isMobile ? '10px' : '0',   // Da un respiro arriba en Móvil
