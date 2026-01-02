@@ -75,7 +75,7 @@ const EcommerceDemo = () => {
         <div className="mobile-full-width" style={{ flex: 1, background: 'white', borderRadius: '10px', padding: '15px' }}>
           <h4 style={{ margin: '0 0 10px 0', fontSize: '0.9rem' }}>Categorías</h4>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', fontSize: '0.8rem' }}>
-             <span>👟 Zapatillas</span><span>💻 Tecnología</span>
+            <span>👟 Zapatillas</span><span>💻 Tecnología</span>
           </div>
         </div>
       </div>
@@ -161,16 +161,42 @@ const DashboardDemo = () => {
 const ShowcaseContent = ({ onClose }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const demos = [
-    { id: 1, title: "E-commerce", component: <EcommerceDemo />, color: '#ecf0f1' },
-    { id: 2, title: "Gestión", component: <InventoryDemo />, color: '#ecf0f1' },
-    { id: 3, title: "IA", component: <VideoDemo />, color: '#ecf0f1' },
-    { id: 4, title: "Analytics", component: <DashboardDemo />, color: '#ecf0f1' }
+    {
+      id: 1,
+      title: "¿Buscas un E-commerce?",
+      desc: "Plataformas de venta modernas, rápidas y optimizadas para el comercio.",
+      component: <EcommerceDemo />,
+      color: '#ecf0f1'
+    },
+    {
+      id: 2,
+      title: "¿Sistemas de Gestión?",
+      desc: "Paneles de control intuitivos para manejar inventarios y activos.",
+      component: <InventoryDemo />,
+      color: '#ecf0f1'
+    },
+    {
+      id: 3,
+      title: "Integración con IA",
+      desc: "Potencia tu negocio con visión artificial y automatización inteligente.",
+      component: <VideoDemo />,
+      color: '#ecf0f1'
+    },
+    {
+      id: 4,
+      title: "Analítica de Datos",
+      desc: "Dashboards interactivos para visualizar el rendimiento en tiempo real.",
+      component: <DashboardDemo />,
+      color: '#ecf0f1'
+    }
   ];
+  const nextDemo = () => setCurrentIndex((prev) => (prev + 1) % demos.length);
+  const prevDemo = () => setCurrentIndex((prev) => (prev - 1 + demos.length) % demos.length);
 
   return (
     <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', padding: '0 1%', overflowX: 'hidden' }}>
       <MobileStyles />
-      
+
       <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'rgba(255,255,255,0.4)', fontSize: '0.8rem', margin: '10px 0' }}>
         <span onClick={onClose} style={{ cursor: 'pointer' }}><FaHome /> Inicio</span>
         <FaChevronRight /> <span style={{ color: 'white' }}>Showcase</span>
