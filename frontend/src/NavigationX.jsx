@@ -122,7 +122,7 @@ const NavigationX = () => {
             initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }} transition={{ type: 'spring', bounce: 0.5 }}
             style={{ position: 'absolute', zIndex: 30, width: '180px', height: '180px', pointerEvents: 'none', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
           >
-            <img src="/gato.gif" alt="Gato Bailando" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+            <img src="/bici.gif" alt="Gato Bailando" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
           </motion.div>
         )}
       </AnimatePresence>
