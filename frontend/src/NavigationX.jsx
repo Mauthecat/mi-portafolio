@@ -7,7 +7,6 @@ import ExperienciaContent from './ExperienciaContent';
 import ShowcaseContent from './ShowcaseContent';
 import FondoAnimado from './FondoAnimado';
 
-// DATOS DE LAS SECCIONES
 const sections = [
   {
     id: 'perfil',
@@ -53,11 +52,9 @@ const sections = [
 
 const NavigationX = () => {
   const [selectedId, setSelectedId] = useState(null);
-  
-  // --- LÓGICA DE FINAL DEL JUEGO ---
   const [visited, setVisited] = useState(new Set()); 
   const [showFinale, setShowFinale] = useState(false); 
-  const [hasShownFinale, setHasShownFinale] = useState(false); // <--- NUEVO: Para evitar el loop infinito
+  const [hasShownFinale, setHasShownFinale] = useState(false);
 
   useEffect(() => {
     const handleEsc = (event) => {
@@ -67,7 +64,6 @@ const NavigationX = () => {
     return () => window.removeEventListener('keydown', handleEsc);
   }, []);
 
-  // 1. RASTREO: Agregamos la sección al set cuando se abre
   useEffect(() => {
     if (selectedId) {
       setVisited(prev => {
@@ -78,19 +74,12 @@ const NavigationX = () => {
     }
   }, [selectedId]);
 
-  // 2. DISPARADOR: Se activa SOLO cuando cerramos una sección (selectedId es null)
   useEffect(() => {
-    // Si NO hay nada abierto (volvimos al menú) 
-    // Y ya visitamos las 4 secciones
-    // Y NO hemos mostrado el final todavía
     if (!selectedId && visited.size === sections.length && !hasShownFinale) {
-      
-      // Pequeño delay para que se sienta natural al cerrar
       const timer = setTimeout(() => {
         setShowFinale(true);
-        setHasShownFinale(true); // Bloqueamos para que no vuelva a salir
+        setHasShownFinale(true);
       }, 800); 
-      
       return () => clearTimeout(timer);
     }
   }, [selectedId, visited, hasShownFinale]);
@@ -115,19 +104,19 @@ const NavigationX = () => {
       
       <FondoAnimado />
 
-      {/* GATO OVERLAY */}
+      {/* BICI OVERLAY (Reemplazo del gato) */}
       <AnimatePresence>
         {!selectedId && (
           <motion.div
             initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }} transition={{ type: 'spring', bounce: 0.5 }}
-            style={{ position: 'absolute', zIndex: 30, width: '180px', height: '180px', pointerEvents: 'none', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+            style={{ position: 'absolute', zIndex: 30, width: '150px', height: '150px', pointerEvents: 'none', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
           >
-            <img src="/gato.gif" alt="Gato Bailando" style={{ width: '1%', height: '1%', objectFit: 'contain' }} />
+            <img src="/bici.gif" alt="Bici Animada" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* --- EL ROMBO CONTENIDO --- */}
+      {/* --- EL ROMBO CONTENIDO (Achicado un 5%) --- */}
       <motion.div 
         animate={{ 
           rotate: 45,
@@ -137,8 +126,8 @@ const NavigationX = () => {
         transition={{ duration: 0.5 }}
         style={{
           display: 'grid', gridTemplateColumns: '1fr 1fr', gridTemplateRows: '1fr 1fr',
-          gap: '15px',
-          width: '80vmin', height: '80vmin',
+          gap: '12px', // Ligera reducción del gap
+          width: '75vmin', height: '75vmin', // REDUCIDO DE 80vmin A 75vmin
           zIndex: 10, pointerEvents: selectedId ? 'none' : 'auto'
         }}
       >
@@ -154,7 +143,7 @@ const NavigationX = () => {
               display: 'flex', flexDirection: 'column',
               alignItems: section.justify, 
               justifyContent: section.align,
-              padding: '30px', borderRadius: '15px',
+              padding: '20px', borderRadius: '15px',
               border: '1px solid rgba(255,255,255,0.1)'
             }}
           >
@@ -162,11 +151,11 @@ const NavigationX = () => {
                <motion.img 
                  src={section.image}
                  initial={{ opacity: 0, scale: 0.8, rotate: -45, x: "-50%", y: "-50%" }}
-                 animate={{ opacity: 0.6, scale: 1, rotate: -45, x: "-50%", y: "-50%" }}
-                 transition={{ duration: 0.8, delay: 0.2 }}
+                 animate={{ opacity: 0.4, scale: 1, rotate: -45, x: "-50%", y: "-50%" }}
+                 transition={{ duration: 0.8 }}
                  style={{
                    position: 'absolute', top: '50%', left: '50%',
-                   width: '200%', height: '200%', objectFit: 'cover',
+                   width: '180%', height: '180%', objectFit: 'cover',
                    zIndex: 0
                  }}
                />
@@ -174,13 +163,14 @@ const NavigationX = () => {
             <motion.div 
               style={{ 
                 transform: 'rotate(-45deg)', textAlign: 'center', zIndex: 2, 
-                textShadow: section.image ? '0 2px 15px rgba(0,0,0,0.9)' : 'none'
+                textShadow: '0 2px 10px rgba(0,0,0,0.8)'
               }}
             >
-              <motion.h2 layoutId={`title-${section.id}`} style={{ margin: 0, color: '#fff', fontSize: '2.5rem', fontWeight: '900', lineHeight: 1 }}>
+              {/* Ajuste dinámico de texto para que no desborde en móvil */}
+              <motion.h2 layoutId={`title-${section.id}`} style={{ margin: 0, color: '#fff', fontSize: 'clamp(1.2rem, 4vw, 2.2rem)', fontWeight: '900', lineHeight: 1 }}>
                 {section.title}
               </motion.h2>
-              <motion.p layoutId={`subtitle-${section.id}`} style={{ margin: 0, color: 'rgba(255,255,255,0.9)', fontSize: '1.1rem' }}>
+              <motion.p layoutId={`subtitle-${section.id}`} style={{ margin: 0, color: 'rgba(255,255,255,0.9)', fontSize: 'clamp(0.7rem, 2vw, 1rem)' }}>
                 {section.subtitle}
               </motion.p>
             </motion.div>
@@ -193,21 +183,23 @@ const NavigationX = () => {
         {selectedId && (
           <motion.div
             layoutId={selectedId}
-            initial={{ rotate: 45, scale: 0.5, borderRadius: '20px' }} animate={{ rotate: 0, scale: 1, borderRadius: '0px' }} exit={{ rotate: 45, scale: 0.5, opacity: 0 }} transition={{ type: "spring", stiffness: 200, damping: 25 }}
+            initial={{ rotate: 45, scale: 0.5, borderRadius: '20px' }} 
+            animate={{ rotate: 0, scale: 1, borderRadius: '0px' }} 
+            exit={{ rotate: 45, scale: 0.5, opacity: 0 }} 
+            transition={{ type: "spring", stiffness: 200, damping: 25 }}
             style={{ 
               position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', 
               background: sections.find(s => s.id === selectedId).color, 
-              backdropFilter: 'blur(20px)', 
-              zIndex: 50, display: 'flex', flexDirection: 'column', padding: '40px', overflowY: 'hidden', transformOrigin: 'center center' 
+              zIndex: 50, display: 'flex', flexDirection: 'column', padding: '20px', // Menos padding en móvil
+              overflowY: 'hidden' 
             }}
           >
-            <motion.div initial={{ rotate: -45, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ opacity: 0 }} transition={{ delay: 0.1, duration: 0.4 }} style={{ width: '100%', height: '100%', maxWidth: '1400px', margin: '0 auto', display: 'flex', flexDirection: 'column' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} style={{ width: '100%', height: '100%', maxWidth: '1400px', margin: '0 auto', display: 'flex', flexDirection: 'column' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
                   <div>
-                    <motion.h1 layoutId={`title-${selectedId}`} style={{ fontSize: '3rem', color: 'white', margin: 0 }}>{sections.find(s => s.id === selectedId).title}</motion.h1>
-                    <motion.p layoutId={`subtitle-${selectedId}`} style={{ fontSize: '1.2rem', color: '#ddd', margin: 0 }}>{sections.find(s => s.id === selectedId).subtitle}</motion.p>
+                    <motion.h1 layoutId={`title-${selectedId}`} style={{ fontSize: 'clamp(1.5rem, 5vw, 3rem)', color: 'white', margin: 0 }}>{sections.find(s => s.id === selectedId).title}</motion.h1>
                   </div>
-                  <button onClick={(e) => { e.stopPropagation(); setSelectedId(null); }} style={{ background: 'rgba(0,0,0,0.5)', color: 'white', border: 'none', borderRadius: '50px', padding: '10px 20px', fontSize: '1rem', fontWeight: 'bold', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '10px' }}><FaArrowLeft /> VOLVER</button>
+                  <button onClick={() => setSelectedId(null)} style={{ background: 'rgba(0,0,0,0.5)', color: 'white', border: 'none', borderRadius: '50px', padding: '8px 15px', fontSize: '0.8rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px' }}><FaArrowLeft /> VOLVER</button>
                 </div>
                 
                 <div style={{ flex: 1, minHeight: 0 }}>{renderContent(selectedId)}</div>
@@ -216,69 +208,37 @@ const NavigationX = () => {
         )}
       </AnimatePresence>
 
-      {/* --- MODAL DE FINALIZACIÓN --- */}
+      {/* MODAL DE FINALIZACIÓN RESPONSIVO */}
       <AnimatePresence>
         {showFinale && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             style={{
               position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh',
-              background: 'rgba(0,0,0,0.85)', zIndex: 100,
+              background: 'rgba(0,0,0,0.9)', zIndex: 100,
               display: 'flex', justifyContent: 'center', alignItems: 'center',
-              backdropFilter: 'blur(10px)'
+              backdropFilter: 'blur(10px)', padding: '20px'
             }}
           >
             <motion.div
-              initial={{ scale: 0.8, y: 50 }}
-              animate={{ scale: 1, y: 0 }}
+              initial={{ scale: 0.8 }} animate={{ scale: 1 }}
               style={{
                 background: 'linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d)',
-                padding: '40px', borderRadius: '20px', maxWidth: '600px', textAlign: 'center',
-                color: 'white', boxShadow: '0 20px 50px rgba(0,0,0,0.5)',
-                border: '1px solid rgba(255,255,255,0.2)'
+                padding: '30px', borderRadius: '20px', maxWidth: '500px', width: '100%', textAlign: 'center',
+                color: 'white', border: '1px solid rgba(255,255,255,0.2)'
               }}
             >
-              <motion.div 
-                animate={{ rotate: [0, 10, -10, 0] }} 
-                transition={{ duration: 2, repeat: Infinity }}
-                style={{ fontSize: '4rem', marginBottom: '20px' }}
-              >
-                🚀
-              </motion.div>
-              
-              <h2 style={{ fontSize: '2.5rem', margin: '0 0 20px 0', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
-                ¡Recorrido Completo!
-              </h2>
-              
-              <p style={{ fontSize: '1.2rem', lineHeight: '1.6', marginBottom: '30px', color: '#eee' }}>
-                "Estoy recién empezando en este mundo, pero con mucha energía y pasión. 
-                <br /><br />
-                <strong>Si esto es lo que hago ahora... ¡Imagínense cuando sea Senior!</strong> 
-                <br /><br />
-                Estamos hechos para cosas grandes."
+              <div style={{ fontSize: '3rem', marginBottom: '10px' }}>🚀</div>
+              <h2 style={{ fontSize: '1.8rem', margin: '0 0 15px 0' }}>¡Recorrido Completo!</h2>
+              <p style={{ fontSize: '1rem', lineHeight: '1.4', marginBottom: '20px' }}>
+                "Estoy recién empezando en este mundo... <br/><b>¡Imagínense cuando sea Senior!</b>"
               </p>
-
               <button 
-                onClick={() => { 
-                    setShowFinale(false); 
-                    setSelectedId('contacto'); // Lleva a contacto
-                }} 
-                style={{
-                  background: 'white', color: '#b21f1f', border: 'none',
-                  padding: '15px 30px', borderRadius: '50px', fontSize: '1.1rem', fontWeight: 'bold',
-                  cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '10px', margin: '0 auto',
-                  boxShadow: '0 5px 15px rgba(0,0,0,0.2)'
-                }}
+                onClick={() => { setShowFinale(false); setSelectedId('contacto'); }} 
+                style={{ background: 'white', color: '#b21f1f', border: 'none', padding: '12px 25px', borderRadius: '50px', fontWeight: 'bold', cursor: 'pointer' }}
               >
-                <FaHandshake /> ¡Trabajemos Juntos!
+                ¡Trabajemos Juntos!
               </button>
-              
-              <div style={{ marginTop: '20px', fontSize: '0.9rem', color: 'rgba(255,255,255,0.6)', cursor: 'pointer', textDecoration: 'underline' }} onClick={() => setShowFinale(false)}>
-                Cerrar y seguir explorando
-              </div>
-
             </motion.div>
           </motion.div>
         )}
