@@ -334,14 +334,14 @@ const ShowcaseContent = ({ onClose }) => {
     {
       id: 1,
       title: "¿Buscas un E-commerce?",
-      desc: "Plataformas de venta modernas, rápidas y optimizadas para conversión.",
+      desc: "Plataformas de venta modernas, rápidas y optimizadas para el comercio.",
       component: <EcommerceDemo />,
       color: '#ecf0f1'
     },
     {
       id: 2,
       title: "¿Sistemas de Gestión?",
-      desc: "Paneles de control intuitivos para manejar inventarios y datos complejos.",
+      desc: "Paneles de control intuitivos para manejar inventarios y activos .",
       component: <InventoryDemo />,
       color: '#ecf0f1'
     },
