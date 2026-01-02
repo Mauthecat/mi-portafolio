@@ -89,15 +89,18 @@ const PerfilContent = ({ onClose }) => {
                   <FaTerminal /> Analista Programador & Soporte TI
               </h3>
 
-              <div style={{ marginTop: '15px', color: '#ccc', fontSize: '0.95rem', lineHeight: '1.6', textAlign: 'justify' }}>
+            
+              <div style={{ marginTop: '20px', color: '#ccc', fontSize: '1rem', lineHeight: '1.6', textAlign: 'justify' }}>
                   <p>
                       Soy estudiante de informática a punto de titularme. Me considero una persona trabajadora y responsable, con ganas de aprender y aportar en lo que sea necesario.
                   </p>
                   <p>
-                      Cuento con una formación integral que abarca desde el desarrollo de software (FrontEnd/BackEnd) hasta la configuración de infraestructura crítica y ciberseguridad.
+                      En mi experiencia laboral, trabajé como <strong>Front End Developer</strong> en <em>Solutions OS</em> desarrollando el apartado visual para proyectos como neumaticospro.cl. Anteriormente, cubrí un puesto de <strong>Soporte TI</strong> en <em>MPG (Codelco)</em>, encargándome de la mantención de equipos y soporte a usuarios.
+                  </p>
+                  <p>
+                      Cuento con conocimientos variados, desde el desarrollo de software hasta infraestructura y soporte técnico.
                   </p>
               </div>
-
               {/* SECCIÓN DE SKILLS ACTUALIZADA */}
               <div style={{ marginTop: '20px' }}>
                   <h4 style={{ color: '#fff', borderBottom: '1px solid #444', paddingBottom: '5px', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '8px', textTransform: 'uppercase' }}>
