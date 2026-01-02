@@ -186,7 +186,7 @@ const ExperienciaContent = ({ goToContact, onClose }) => {
                         Ir a Contacto
                       </button>
                   ) : card.link && (
-                      <a href={card.link} target="_blank" rel="noopener noreferrer" style={{ textAlign: 'center', width: '100%', padding: '8px', border: `1px solid ${card.color}`, color: card.color, borderRadius: '8px', textDecoration: 'none', fontSize: '0.85rem', fontWeight: 'bold' }}>
+                      <a href={card.link} target="_blank" rel="noopener noreferrer" style={{ textAlign: 'center', width: '95%', padding: '8px', border: `1px solid ${card.color}`, color: card.color, borderRadius: '8px', textDecoration: 'none', fontSize: '0.85rem', fontWeight: 'bold' }}>
                         Ver Proyecto
                       </a>
                   )}
