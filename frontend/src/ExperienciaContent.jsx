@@ -5,12 +5,17 @@ import { FaExternalLinkAlt, FaTools, FaCube, FaYoutube, FaArrowRight, FaLeaf, Fa
 const ExperienciaContent = ({ goToContact, onClose }) => {
   const scrollRef = useRef(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isClosing, setIsClosing] = useState(false);
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+  const handleBack = () => {
+    setIsClosing(true); // Desactiva interacciones inmediatamente
+    onClose();
+  };
 
   const scroll = (direction) => {
     if (scrollRef.current) {
@@ -97,8 +102,10 @@ const ExperienciaContent = ({ goToContact, onClose }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, pointerEvents: 'none' }} // Crucial: Al salir, deja de capturar clics
+      transition={{ duration: 0.3 }}
       style={{ 
         width: '100%', 
         height: '100%', 
@@ -106,11 +113,18 @@ const ExperienciaContent = ({ goToContact, onClose }) => {
         flexDirection: 'column',
         padding: '0 2%',
         boxSizing: 'border-box'
+        pointerEvents: isClosing ? 'none' : 'auto',
+        position: 'relative',
+        zIndex: isClosing ? 0 : 50 // Se baja el nivel al cerrar
       }}
     >
       {/* BREADCRUMB */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'rgba(255,255,255,0.4)', fontSize: '0.9rem', marginBottom: '5px' }}>
-        <motion.span onClick={onClose} whileHover={{ scale: 1.05, color: 'white' }} style={{ display: 'flex', alignItems: 'center', gap: '5px', cursor: 'pointer' }}>
+        <motion.span 
+          onClick={handleBack} // Usamos la función handleBack mejorada
+          whileHover={{ scale: 1.05, color: 'white' }} 
+          style={{ display: 'flex', alignItems: 'center', gap: '5px', cursor: 'pointer' }}
+        >
             <FaHome /> Inicio
         </motion.span>
         <FaChevronRight style={{ fontSize: '0.7rem' }} />
