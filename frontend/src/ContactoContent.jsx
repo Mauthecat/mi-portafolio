@@ -33,25 +33,25 @@ const ContactoContent = ({ onClose }) => {
         alignItems: 'center',
         justifyContent: 'flex-start', 
         height: '100%',
-        width: '100%',
-        gap: '20px',
+        width: '100%', // Ancho total
+        boxSizing: 'border-box',
+        gap: '15px',
         padding: isMobile ? '10px' : '20px',
-        /* SOLUCIÓN AL CORTE INFERIOR: Habilitamos scroll */
         overflowY: 'auto',
-        overflowX: 'hidden',
-        boxSizing: 'border-box'
+        overflowX: 'hidden'
       }}
     >
       
-      {/* --- BREADCRUMB --- */}
+      {/* BREADCRUMB - Alineado al borde del contenido centrado */}
       <div style={{ 
         width: '100%', 
+        maxWidth: '800px', // Tope para que no se pegue a los bordes en PC
         display: 'flex', 
         alignItems: 'center', 
         gap: '10px', 
         color: 'rgba(255,255,255,0.4)', 
         fontSize: '0.9rem',
-        marginBottom: '10px'
+        marginBottom: '5px'
       }}>
         <motion.span 
             onClick={onClose} 
@@ -60,47 +60,56 @@ const ContactoContent = ({ onClose }) => {
         >
             <FaHome /> Inicio
         </motion.span>
-        
         <FaChevronRight style={{ fontSize: '0.7rem' }} />
         <span style={{ color: 'white', fontWeight: 'bold' }}>Contacto</span>
       </div>
 
-      {/* --- CONTENEDOR PRINCIPAL --- */}
+      {/* CONTENEDOR PRINCIPAL CENTRADO */}
       <div style={{ 
         display: 'flex', 
         flexDirection: 'column', 
         alignItems: 'center', 
         justifyContent: isMobile ? 'flex-start' : 'center', 
         flex: 1, 
-        width: '100%' 
+        width: '100%',
+        maxWidth: '900px', // Centra el bloque entero
+        margin: '0 auto' 
       }}>
         
-        {/* ENCABEZADO CON TEXTO CORREGIDO */}
-        <motion.div variants={itemVariants} style={{ textAlign: 'center', maxWidth: '100%', width: isMobile ? '95%' : '700px' }}>
+        {/* ENCABEZADO */}
+        <motion.div variants={itemVariants} style={{ textAlign: 'center', width: '100%' }}>
           <div style={{ display: 'inline-block', padding: '5px 15px', background: 'rgba(46, 204, 113, 0.2)', color: '#2ecc71', borderRadius: '20px', marginBottom: '15px', border: '1px solid rgba(46, 204, 113, 0.4)', fontWeight: 'bold', fontSize: '0.8rem' }}>
               <span style={{ marginRight: '8px' }}>●</span> DISPONIBILIDAD INMEDIATA
           </div>
           
-          <h2 style={{ fontSize: isMobile ? '1.8rem' : '3rem', margin: 0, color: 'white', lineHeight: 1.2 }}>
+          <h2 style={{ fontSize: isMobile ? '1.8rem' : '3rem', margin: '0 auto', color: 'white', lineHeight: 1.2, maxWidth: '600px' }}>
             Busco mi <span style={{ color: '#3498db' }}>Práctica Profesional</span>
           </h2>
           
-          <p style={{ fontSize: isMobile ? '1rem' : '1.2rem', color: '#ccc', marginTop: '20px', lineHeight: '1.6', textAlign: isMobile ? 'justify' : 'center' }}>
+          <p style={{ 
+            fontSize: isMobile ? '1rem' : '1.2rem', 
+            color: '#ccc', 
+            marginTop: '20px', 
+            lineHeight: '1.6', 
+            textAlign: 'center', // Cambiado de justify a center para móviles
+            maxWidth: '650px',
+            margin: '20px auto 0' // Centra el bloque de texto
+          }}>
             ¡Hola! Ya finalicé todas mis asignaturas y estoy listo para integrarme a tu equipo.
             <br />
             Busco una oportunidad para aplicar mis conocimientos en <strong>Desarrollo Full Stack</strong>, <strong>IoT</strong>, <strong>Redes y Ciberseguridad</strong> o <strong>Infraestructura TI</strong>. Tengo las ganas, la base técnica y la energía para aportar desde el día uno.
           </p>
         </motion.div>
 
-        {/* GRID DE TARJETAS AJUSTADO */}
+        {/* GRID DE TARJETAS */}
         <div style={{ 
           display: 'flex', 
           gap: '15px', 
           flexWrap: 'wrap', 
           justifyContent: 'center', 
           width: '100%', 
-          marginTop: '30px',
-          paddingBottom: '30px' /* Espacio extra para que no se pegue al fondo en móvil */
+          marginTop: '25px',
+          paddingBottom: '40px' 
         }}>
           
           {/* WHATSAPP */}
@@ -154,7 +163,7 @@ const ContactoContent = ({ onClose }) => {
 };
 
 const cardStyle = {
-  flex: '1 1 200px',
+  flex: isMobile ? '1 1 100%' : '1 1 200px', // En móvil ocupan todo el ancho para centrar mejor
   maxWidth: '280px',
   minWidth: '220px',
   background: 'rgba(255,255,255,0.03)',
