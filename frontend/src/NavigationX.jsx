@@ -17,7 +17,7 @@ const sections = [
     gridArea: '1 / 1 / 2 / 2',
     align: 'center', 
     justify: 'center',
-    image: '/gato.png',
+    image: '/bici.gif',
   },
   {
     id: 'experiencia',
