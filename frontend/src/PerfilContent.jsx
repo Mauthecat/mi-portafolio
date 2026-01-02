@@ -34,12 +34,14 @@ const PerfilContent = ({ onClose }) => {
         display: 'flex',
         flexDirection: 'column',
         height: '100%',
-        width: '98%', // Reducimos ligeramente para dar aire a los bordes
-        margin: '0 auto', // Centramos el contenido
+        width: '98%',
+        margin: '0 auto',
         gap: '10px',
-        overflowY: isMobile ? 'auto' : 'hidden',
-        paddingBottom: isMobile ? '40px' : '0',
-        paddingRight: '10px', // Espacio de seguridad para el borde derecho
+        overflowY: 'auto', // Habilitamos scroll para ambas vistas si el contenido desborda
+        overflowX: 'hidden',
+        /* AGREGAMOS UN PADDING REAL ABAJO PARA QUE NADA CHOQUE */
+        paddingBottom: isMobile ? '80px' : '40px', 
+        paddingRight: '10px',
         boxSizing: 'border-box'
       }}
     >
@@ -68,8 +70,8 @@ const PerfilContent = ({ onClose }) => {
       <div style={{ 
         display: 'flex', 
         flexDirection: isMobile ? 'column' : 'row', 
-        gap: isMobile ? '20px' : '30px', 
-        flex: 1,
+        gap: isMobile ? '25px' : '30px', 
+        flexShrink: 0, // Evita que se colapse
         width: '100%',
         boxSizing: 'border-box'
       }}>
@@ -82,7 +84,7 @@ const PerfilContent = ({ onClose }) => {
             display: 'flex', 
             flexDirection: 'column', 
             order: isMobile ? 1 : 2,
-            minWidth: 0 // Evita que el flexbox se desborde por contenidos largos
+            minWidth: 0 
           }}
         >
           <div style={{ paddingRight: isMobile ? '5px' : '15px', zIndex: 2 }}>
@@ -93,23 +95,16 @@ const PerfilContent = ({ onClose }) => {
                   <FaTerminal /> Analista Programador & Soporte TI
               </h3>
 
-              <div style={{ marginTop: '15px', color: '#ccc', fontSize: '0.95rem', lineHeight: '1.5', textAlign: 'justify' }}>
-                  <p>Soy estudiante de informática a punto de titularme. Me considero una persona trabajadora y responsable, con ganas de aprender y aportar.</p>
-                  <p>En <strong>Solutions OS</strong> desarrollé interfaces visuales (Front End), y en <strong>MPG (Codelco)</strong> realicé soporte técnico y mantención de equipos.</p>
+              <div style={{ marginTop: '20px', color: '#ccc', fontSize: '1rem', lineHeight: '1.6', textAlign: 'justify' }}>
+                  <p>Soy estudiante de informática a punto de titularme. Me considero una persona trabajadora y responsable, con ganas de aprender y aportar en lo que sea necesario.</p>
+                  <p>En mi experiencia laboral, trabajé como <strong>Front End Developer</strong> desarrollando interfaces visuales y como <strong>Soporte TI</strong> en <em>MPG (Codelco)</em>.</p>
               </div>
 
-              {/* SECCIÓN DE SKILLS */}
               <div style={{ marginTop: '20px' }}>
                   <h4 style={{ color: '#fff', borderBottom: '1px solid #444', paddingBottom: '5px', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '8px', textTransform: 'uppercase' }}>
                       <FaServer /> Herramientas & Conocimientos
                   </h4>
-                  <div style={{ 
-                    display: 'flex', 
-                    gap: '6px', 
-                    flexWrap: 'wrap', 
-                    marginTop: '10px',
-                    width: '100%' 
-                  }}>
+                  <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginTop: '10px' }}>
                       {skills.map(skill => (
                           <span key={skill} style={{ 
                               background: 'rgba(255, 255, 255, 0.08)', 
@@ -139,13 +134,11 @@ const PerfilContent = ({ onClose }) => {
             border: '1px solid rgba(255,255,255,0.1)',
             display: 'flex', 
             flexDirection: 'column',
-            minHeight: isMobile ? '350px' : 'auto',
-            order: isMobile ? 2 : 1,
-            // CAMBIO AQUÍ: Margen constante para todas las vistas
-            marginBottom: '20px',
-            paddingBottom: '20px' 
+            /* Altura fija en móvil para que el iframe no se pierda */
+            height: isMobile ? '450px' : '550px', 
+            order: isMobile ? 2 : 1
           }}
-          >
+        >
           <div style={{ padding: '12px', background: 'rgba(0,0,0,0.4)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#ccc', fontWeight: 'bold', fontSize: '0.8rem' }}>
                 <FaFilePdf style={{ color: '#e74c3c'}} /> CV
@@ -162,14 +155,14 @@ const PerfilContent = ({ onClose }) => {
         </motion.div>
       </div>
 
+      {/* ESPACIADOR FINAL: La clave para que el margin funcione siempre */}
+      <div style={{ height: '20px', width: '100%', flexShrink: 0 }}></div>
+
       {!isMobile && (
         <motion.div 
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
+            initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.5, type: 'spring' }}
-            style={{ 
-                position: 'absolute', bottom: '10px', right: '10px', width: '120px', zIndex: 1, pointerEvents: 'none'
-            }}
+            style={{ position: 'absolute', bottom: '10px', right: '10px', width: '120px', zIndex: 1, pointerEvents: 'none' }}
         >
             <img src="/gif2.gif" alt="Gato" style={{ width: '100%', height: 'auto' }} />
         </motion.div>
