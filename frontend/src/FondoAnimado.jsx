@@ -79,14 +79,14 @@ const FondoAnimado = () => {
       {/* 1. LAYER CANVAS (Matrix) */}
       <canvas 
         ref={canvasRef} 
-        style={{ position: 'absolute', top: 0, left: 0, opacity: 0.3, filter: 'blur(1px)' }} 
+        style={{ position: 'absolute', top: 0, left: 0, opacity: 0.5, filter: 'blur(1px)' }} 
       />
 
       {/* 2. LAYER PULSO DE LUZ (Glow) */}
       <motion.div
         animate={{
-          opacity: [0.1, 0.3, 0.1], // Brilla y se apaga
-          scale: [1, 1.1, 1], // Crece un poco
+          opacity: [0.2, 0.6, 0.2], // Brilla y se apaga
+          scale: [1, 2.0, 1], // Crece un poco
         }}
         transition={{
           duration: bpmDuration * 2, // Duración del ciclo (sincronizado a 90bpm pero a medio tiempo para no marear)
@@ -98,7 +98,7 @@ const FondoAnimado = () => {
           top: '50%', left: '50%',
           transform: 'translate(-50%, -50%)',
           width: '120vw', height: '120vh',
-          background: 'radial-gradient(circle, rgba(52, 152, 219, 0.15) 0%, rgba(0,0,0,0) 70%)', // Azul muy suave
+          background: 'radial-gradient(circle, rgba(52, 152, 219, 0.4) 0%, rgba(0,0,0,0) 80%)', // Azul muy suave
           zIndex: 1
         }}
       />
