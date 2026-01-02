@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-// Agregamos FaHome y FaChevronRight a los imports
-import { FaLinkedin, FaWhatsapp, FaEnvelope, FaCopy, FaCheck, FaUserGraduate, FaHome, FaChevronRight } from 'react-icons/fa';
+import { FaLinkedin, FaWhatsapp, FaEnvelope, FaCopy, FaCheck, FaHome, FaChevronRight } from 'react-icons/fa';
 
-// Recibimos la prop onClose
 const ContactoContent = ({ onClose }) => {
   const [copied, setCopied] = useState(false);
+  const isMobile = window.innerWidth <= 768;
 
   const handleCopy = (text) => {
     navigator.clipboard.writeText(text);
@@ -32,19 +31,21 @@ const ContactoContent = ({ onClose }) => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        // Cambiamos justify a flex-start para que el breadcrumb quede arriba
-        // y usamos padding/margin para centrar visualmente el resto
         justifyContent: 'flex-start', 
         height: '100%',
         width: '100%',
         gap: '20px',
-        padding: '20px' // Padding para que no toque los bordes
+        padding: isMobile ? '10px' : '20px',
+        /* SOLUCIÓN AL CORTE INFERIOR: Habilitamos scroll */
+        overflowY: 'auto',
+        overflowX: 'hidden',
+        boxSizing: 'border-box'
       }}
     >
       
-      {/* --- BREADCRUMB INTERACTIVO --- */}
+      {/* --- BREADCRUMB --- */}
       <div style={{ 
-        width: '100%', // Ocupa todo el ancho para alinear a la izquierda
+        width: '100%', 
         display: 'flex', 
         alignItems: 'center', 
         gap: '10px', 
@@ -53,7 +54,7 @@ const ContactoContent = ({ onClose }) => {
         marginBottom: '10px'
       }}>
         <motion.span 
-            onClick={onClose} // Cierra la vista
+            onClick={onClose} 
             whileHover={{ scale: 1.05, color: 'white' }}
             style={{ display: 'flex', alignItems: 'center', gap: '5px', cursor: 'pointer' }}
         >
@@ -64,28 +65,43 @@ const ContactoContent = ({ onClose }) => {
         <span style={{ color: 'white', fontWeight: 'bold' }}>Contacto</span>
       </div>
 
-      {/* --- CONTENEDOR CENTRADO VERTICALMENTE (Para el resto del contenido) --- */}
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', flex: 1, width: '100%' }}>
+      {/* --- CONTENEDOR PRINCIPAL --- */}
+      <div style={{ 
+        display: 'flex', 
+        flexDirection: 'column', 
+        alignItems: 'center', 
+        justifyContent: isMobile ? 'flex-start' : 'center', 
+        flex: 1, 
+        width: '100%' 
+      }}>
         
-        {/* ENCABEZADO */}
-        <motion.div variants={itemVariants} style={{ textAlign: 'center', maxWidth: '700px' }}>
-          <div style={{ display: 'inline-block', padding: '5px 15px', background: 'rgba(46, 204, 113, 0.2)', color: '#2ecc71', borderRadius: '20px', marginBottom: '15px', border: '1px solid rgba(46, 204, 113, 0.4)', fontWeight: 'bold', fontSize: '0.9rem' }}>
+        {/* ENCABEZADO CON TEXTO CORREGIDO */}
+        <motion.div variants={itemVariants} style={{ textAlign: 'center', maxWidth: '100%', width: isMobile ? '95%' : '700px' }}>
+          <div style={{ display: 'inline-block', padding: '5px 15px', background: 'rgba(46, 204, 113, 0.2)', color: '#2ecc71', borderRadius: '20px', marginBottom: '15px', border: '1px solid rgba(46, 204, 113, 0.4)', fontWeight: 'bold', fontSize: '0.8rem' }}>
               <span style={{ marginRight: '8px' }}>●</span> DISPONIBILIDAD INMEDIATA
           </div>
           
-          <h2 style={{ fontSize: '3rem', margin: 0, color: 'white', lineHeight: 1.2 }}>
+          <h2 style={{ fontSize: isMobile ? '1.8rem' : '3rem', margin: 0, color: 'white', lineHeight: 1.2 }}>
             Busco mi <span style={{ color: '#3498db' }}>Práctica Profesional</span>
           </h2>
           
-          <p style={{ fontSize: '1.2rem', color: '#ccc', marginTop: '20px', lineHeight: '1.6' }}>
+          <p style={{ fontSize: isMobile ? '1rem' : '1.2rem', color: '#ccc', marginTop: '20px', lineHeight: '1.6', textAlign: isMobile ? 'justify' : 'center' }}>
             ¡Hola! Ya finalicé todas mis asignaturas y estoy listo para integrarme a tu equipo.
             <br />
-            Busco una oportunidad para aplicar mis conocimientos en <strong>Desarrollo Full Stack</strong>, <strong>IoT</strong> o <strong>Infraestructura TI</strong>. Tengo las ganas, la base técnica y la energía para aportar desde el día uno.
+            Busco una oportunidad para aplicar mis conocimientos en <strong>Desarrollo Full Stack</strong>, <strong>IoT</strong>, <strong>Redes y Ciberseguridad</strong> o <strong>Infraestructura TI</strong>. Tengo las ganas, la base técnica y la energía para aportar desde el día uno.
           </p>
         </motion.div>
 
-        {/* GRID DE TARJETAS */}
-        <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', justifyContent: 'center', width: '100%', marginTop: '30px' }}>
+        {/* GRID DE TARJETAS AJUSTADO */}
+        <div style={{ 
+          display: 'flex', 
+          gap: '15px', 
+          flexWrap: 'wrap', 
+          justifyContent: 'center', 
+          width: '100%', 
+          marginTop: '30px',
+          paddingBottom: '30px' /* Espacio extra para que no se pegue al fondo en móvil */
+        }}>
           
           {/* WHATSAPP */}
           <motion.a 
@@ -96,9 +112,9 @@ const ContactoContent = ({ onClose }) => {
             whileTap={{ scale: 0.95 }}
             style={cardStyle}
           >
-            <FaWhatsapp style={{ fontSize: '2.5rem', color: '#25D366', marginBottom: '10px' }} />
-            <h3 style={{ margin: '0 0 5px 0', fontSize: '1.2rem' }}>Hablemos por WhatsApp</h3>
-            <p style={{ margin: 0, color: '#aaa', fontSize: '0.9rem' }}>(+569) 4112 2963</p>
+            <FaWhatsapp style={{ fontSize: '2rem', color: '#25D366', marginBottom: '10px' }} />
+            <h3 style={{ margin: '0 0 5px 0', fontSize: '1rem' }}>WhatsApp</h3>
+            <p style={{ margin: 0, color: '#aaa', fontSize: '0.8rem' }}>(+569) 4112 2963</p>
           </motion.a>
 
           {/* CORREO */}
@@ -109,12 +125,12 @@ const ContactoContent = ({ onClose }) => {
             onClick={() => handleCopy('ces.hormazabal.g@gmail.com')}
             style={{ ...cardStyle, cursor: 'copy' }}
           >
-            <div style={{ position: 'absolute', top: '10px', right: '10px', fontSize: '0.7rem', color: copied ? '#2ecc71' : '#555' }}>
-              {copied ? <span style={{ display: 'flex', alignItems: 'center', gap: '5px' }}><FaCheck /> Copiado</span> : <FaCopy />}
+            <div style={{ position: 'absolute', top: '10px', right: '10px', fontSize: '0.6rem', color: copied ? '#2ecc71' : '#555' }}>
+              {copied ? <FaCheck /> : <FaCopy />}
             </div>
-            <FaEnvelope style={{ fontSize: '2.5rem', color: '#e74c3c', marginBottom: '10px' }} />
-            <h3 style={{ margin: '0 0 5px 0', fontSize: '1.2rem' }}>Envíame un Correo</h3>
-            <p style={{ margin: 0, color: '#aaa', fontSize: '0.9rem' }}>ces.hormazabal.g@gmail.com</p>
+            <FaEnvelope style={{ fontSize: '2rem', color: '#e74c3c', marginBottom: '10px' }} />
+            <h3 style={{ margin: '0 0 5px 0', fontSize: '1rem' }}>Correo</h3>
+            <p style={{ margin: 0, color: '#aaa', fontSize: '0.8rem', wordBreak: 'break-all' }}>ces.hormazabal.g@gmail.com</p>
           </motion.div>
 
           {/* LINKEDIN */}
@@ -126,9 +142,9 @@ const ContactoContent = ({ onClose }) => {
             whileTap={{ scale: 0.95 }}
             style={cardStyle}
           >
-            <FaLinkedin style={{ fontSize: '2.5rem', color: '#0077b5', marginBottom: '10px' }} />
-            <h3 style={{ margin: '0 0 5px 0', fontSize: '1.2rem' }}>Conectemos</h3>
-            <p style={{ margin: 0, color: '#aaa', fontSize: '0.9rem' }}>Ver Perfil en LinkedIn</p>
+            <FaLinkedin style={{ fontSize: '2rem', color: '#0077b5', marginBottom: '10px' }} />
+            <h3 style={{ margin: '0 0 5px 0', fontSize: '1rem' }}>LinkedIn</h3>
+            <p style={{ margin: 0, color: '#aaa', fontSize: '0.8rem' }}>Ver Perfil Profesional</p>
           </motion.a>
 
         </div>
@@ -137,13 +153,13 @@ const ContactoContent = ({ onClose }) => {
   );
 };
 
-// Estilos
 const cardStyle = {
   flex: '1 1 200px',
   maxWidth: '280px',
+  minWidth: '220px',
   background: 'rgba(255,255,255,0.03)',
   borderRadius: '15px',
-  padding: '25px',
+  padding: '20px',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -152,7 +168,6 @@ const cardStyle = {
   color: 'white',
   border: '1px solid rgba(255,255,255,0.08)',
   transition: 'all 0.3s ease',
-  cursor: 'pointer',
   position: 'relative'
 };
 
