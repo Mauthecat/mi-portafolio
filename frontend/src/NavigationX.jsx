@@ -205,7 +205,7 @@ const NavigationX = () => {
                 <br /><br />
                 <strong>Si esto es lo que hago ahora... ¡Imagínense cuando sea Senior!</strong> 
                 <br /><br />
-                Estamos hechos para cosas grandes.
+                ¡Estamos hechos para cosas grandes!
               </p>
 
               <button 

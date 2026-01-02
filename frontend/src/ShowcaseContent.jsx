@@ -99,7 +99,7 @@ const EcommerceDemo = () => {
             <li style={{ cursor: 'pointer' }}>🏠 Hogar</li>
           </ul>
           <div style={{ marginTop: '20px', background: '#fff3cd', padding: '10px', borderRadius: '5px', fontSize: '0.8rem', color: '#856404' }}>
-            <strong>¡Envío Gratis!</strong><br/>En compras sobre $50
+            <strong>¡Envío Gratis!</strong><br/>En compras sobre $50.000
           </div>
         </div>
       </div>
