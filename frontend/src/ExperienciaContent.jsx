@@ -112,7 +112,7 @@ const ExperienciaContent = ({ goToContact, onClose }) => {
         display: 'flex', 
         flexDirection: 'column',
         padding: '0 2%',
-        boxSizing: 'border-box'
+        boxSizing: 'border-box',
         pointerEvents: isClosing ? 'none' : 'auto',
         position: 'relative',
         zIndex: isClosing ? 0 : 50 // Se baja el nivel al cerrar
