@@ -13,7 +13,6 @@ const PerfilContent = ({ onClose }) => {
     visible: { y: 0, opacity: 1 }
   };
 
-  // 2. LISTA DE SKILLS ACTUALIZADA CON TUS RAMOS
   const skills = [
     'Windows Server', 'Ciberseguridad', 'Linux', 'Sistemas Operativos',
     'Python', 'Java', 'Lenguaje C', 'SQL Developer',
@@ -24,7 +23,6 @@ const PerfilContent = ({ onClose }) => {
     'Aplicaciones Móviles', 'Innovación & Emprendimiento', 'Soporte TI'
   ];
 
-  // Detectamos si es móvil de forma sencilla para el estilo inline
   const isMobile = window.innerWidth <= 768;
 
   return (
@@ -36,10 +34,13 @@ const PerfilContent = ({ onClose }) => {
         display: 'flex',
         flexDirection: 'column',
         height: '100%',
-        width: '100%',
+        width: '98%', // Reducimos ligeramente para dar aire a los bordes
+        margin: '0 auto', // Centramos el contenido
         gap: '10px',
-        overflowY: isMobile ? 'auto' : 'hidden', // Scroll solo en móvil
-        paddingBottom: isMobile ? '40px' : '0'
+        overflowY: isMobile ? 'auto' : 'hidden',
+        paddingBottom: isMobile ? '40px' : '0',
+        paddingRight: '10px', // Espacio de seguridad para el borde derecho
+        boxSizing: 'border-box'
       }}
     >
       {/* BREADCRUMB */}
@@ -49,7 +50,8 @@ const PerfilContent = ({ onClose }) => {
         gap: '10px', 
         color: 'rgba(255,255,255,0.4)', 
         fontSize: '0.9rem',
-        paddingLeft: '5px' 
+        paddingLeft: '5px',
+        marginBottom: '5px'
       }}>
         <motion.span 
             onClick={onClose} 
@@ -62,13 +64,14 @@ const PerfilContent = ({ onClose }) => {
         <span style={{ color: 'white', fontWeight: 'bold' }}>Perfil</span>
       </div>
 
-      {/* --- CONTENIDO PRINCIPAL (Responsivo) --- */}
+      {/* --- CONTENIDO PRINCIPAL --- */}
       <div style={{ 
         display: 'flex', 
-        flexDirection: isMobile ? 'column' : 'row', // 1. CAMBIO A UNA COLUMNA EN MÓVIL
-        gap: isMobile ? '20px' : '40px', 
+        flexDirection: isMobile ? 'column' : 'row', 
+        gap: isMobile ? '20px' : '30px', 
         flex: 1,
-        width: '100%'
+        width: '100%',
+        boxSizing: 'border-box'
       }}>
 
         {/* --- COLUMNA DE BIO + SKILLS --- */}
@@ -78,35 +81,35 @@ const PerfilContent = ({ onClose }) => {
             flex: '1', 
             display: 'flex', 
             flexDirection: 'column', 
-            order: isMobile ? 1 : 2 // En móvil va primero la bio/skills
+            order: isMobile ? 1 : 2,
+            minWidth: 0 // Evita que el flexbox se desborde por contenidos largos
           }}
         >
-          <div style={{ paddingRight: isMobile ? '0' : '20px', zIndex: 2 }}>
-              <h2 style={{ fontSize: isMobile ? '2rem' : '2.8rem', margin: '0 0 5px 0', color: 'white' }}>
+          <div style={{ paddingRight: isMobile ? '5px' : '15px', zIndex: 2 }}>
+              <h2 style={{ fontSize: isMobile ? '1.8rem' : '2.5rem', margin: '0 0 5px 0', color: 'white' }}>
                   César Hormazábal
               </h2>
               <h3 style={{ fontSize: '1rem', color: '#3498db', marginTop: 0, display: 'flex', alignItems: 'center', gap: '10px' }}>
                   <FaTerminal /> Analista Programador & Soporte TI
               </h3>
 
-            
-              <div style={{ marginTop: '20px', color: '#ccc', fontSize: '1rem', lineHeight: '1.6', textAlign: 'justify' }}>
-                  <p>
-                      Soy estudiante de informática a punto de titularme. Me considero una persona trabajadora y responsable, con ganas de aprender y aportar en lo que sea necesario.
-                  </p>
-                  <p>
-                      En mi experiencia laboral, trabajé como <strong>Front End Developer</strong> en <em>Solutions OS</em> desarrollando el apartado visual para proyectos como neumaticospro.cl. Anteriormente, cubrí un puesto de <strong>Soporte TI</strong> en <em>MPG (Codelco)</em>, encargándome de la mantención de equipos y soporte a usuarios.
-                  </p>
-                  <p>
-                      Cuento con conocimientos variados, desde el desarrollo de software hasta infraestructura y soporte técnico.
-                  </p>
+              <div style={{ marginTop: '15px', color: '#ccc', fontSize: '0.95rem', lineHeight: '1.5', textAlign: 'justify' }}>
+                  <p>Soy estudiante de informática a punto de titularme. Me considero una persona trabajadora y responsable, con ganas de aprender y aportar.</p>
+                  <p>En <strong>Solutions OS</strong> desarrollé interfaces visuales (Front End), y en <strong>MPG (Codelco)</strong> realicé soporte técnico y mantención de equipos.</p>
               </div>
-              {/* SECCIÓN DE SKILLS ACTUALIZADA */}
+
+              {/* SECCIÓN DE SKILLS */}
               <div style={{ marginTop: '20px' }}>
                   <h4 style={{ color: '#fff', borderBottom: '1px solid #444', paddingBottom: '5px', fontSize: '0.85rem', display: 'flex', alignItems: 'center', gap: '8px', textTransform: 'uppercase' }}>
                       <FaServer /> Herramientas & Conocimientos
                   </h4>
-                  <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap', marginTop: '10px' }}>
+                  <div style={{ 
+                    display: 'flex', 
+                    gap: '6px', 
+                    flexWrap: 'wrap', 
+                    marginTop: '10px',
+                    width: '100%' 
+                  }}>
                       {skills.map(skill => (
                           <span key={skill} style={{ 
                               background: 'rgba(255, 255, 255, 0.08)', 
@@ -114,8 +117,7 @@ const PerfilContent = ({ onClose }) => {
                               border: '1px solid rgba(255, 255, 255, 0.1)', 
                               padding: '4px 10px', 
                               borderRadius: '4px', 
-                              fontSize: '0.75rem',
-                              cursor: 'default'
+                              fontSize: '0.75rem'
                           }}>
                               {skill}
                           </span>
@@ -125,7 +127,7 @@ const PerfilContent = ({ onClose }) => {
           </div>
         </motion.div>
 
-        {/* --- COLUMNA DE CV (ABAJO EN MÓVIL) --- */}
+        {/* --- COLUMNA DE CV --- */}
         <motion.div 
           variants={itemVariants} 
           style={{ 
@@ -137,8 +139,9 @@ const PerfilContent = ({ onClose }) => {
             border: '1px solid rgba(255,255,255,0.1)',
             display: 'flex', 
             flexDirection: 'column',
-            minHeight: isMobile ? '400px' : 'auto', // Asegura que se vea el PDF en móvil
-            order: isMobile ? 2 : 1 // 1. CURRICULUM ABAJO EN MÓVIL
+            minHeight: isMobile ? '350px' : 'auto',
+            order: isMobile ? 2 : 1,
+            marginBottom: isMobile ? '20px' : '0'
           }}
         >
           <div style={{ padding: '12px', background: 'rgba(0,0,0,0.4)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -155,17 +158,15 @@ const PerfilContent = ({ onClose }) => {
               title="Curriculum Vitae"
           />
         </motion.div>
-
       </div>
 
-      {/* GIF OCULTO EN MÓVIL PARA EVITAR DESORDEN */}
       {!isMobile && (
         <motion.div 
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.5, type: 'spring' }}
             style={{ 
-                position: 'absolute', bottom: '0px', right: '0px', width: '140px', zIndex: 1, pointerEvents: 'none'
+                position: 'absolute', bottom: '10px', right: '10px', width: '120px', zIndex: 1, pointerEvents: 'none'
             }}
         >
             <img src="/gif2.gif" alt="Gato" style={{ width: '100%', height: 'auto' }} />
