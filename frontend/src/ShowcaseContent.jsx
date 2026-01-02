@@ -70,7 +70,7 @@ const EcommerceDemo = () => {
           ))}
         </div>
       </div>
-      <div style={{ flex: 1, display: 'flex', padding: '20px', gap: '20px', overflow: 'hidden' }}>
+      <div style={{ flex: 1, display: 'flex', padding: '2%', gap: '2%', overflow: 'hidden', boxSizing: 'border-box' }}>
         <div style={{ flex: 3, overflowY: 'auto', paddingRight: '5px' }}>
           <h3 style={{ margin: '0 0 15px 0', color: '#333' }}>Destacados</h3>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '15px' }}>
@@ -84,7 +84,14 @@ const EcommerceDemo = () => {
             ))}
           </div>
         </div>
-        <div style={{ flex: 1, background: 'white', borderRadius: '10px', padding: '15px', height: 'fit-content', boxShadow: '0 2px 5px rgba(0,0,0,0.05)' }}>
+        <div style={{
+          flex: 1,
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: '2%',
+          width: '100%',
+          boxSizing: 'border-box'
+          }}>
           <h4 style={{ margin: '0 0 10px 0', color: '#333', borderBottom: '2px solid #eee', paddingBottom: '5px' }}>Categorías</h4>
           <ul style={{ listStyle: 'none', padding: 0, margin: 0, fontSize: '0.9rem', color: '#666', lineHeight: '2' }}>
             <li style={{ cursor: 'pointer' }}>👟 Zapatillas</li>
@@ -118,7 +125,7 @@ const InventoryDemo = () => {
 
   return (
     <div style={{ width: '100%', height: '100%', display: 'flex', background: '#f4f6f9' }}>
-      <div style={{ width: '200px', background: '#2c3e50', color: '#ecf0f1', display: 'flex', flexDirection: 'column', padding: '20px' }}>
+      <div style={{ width: '20%', minWidth: '160px', maxWidth: '220px', boxSizing: 'border-box', background: '#2c3e50', color: '#ecf0f1', display: 'flex', flexDirection: 'column', padding: '20px' }}>
         <div style={{ fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '30px', display: 'flex', alignItems: 'center', gap: '10px' }}>
           <FaBox /> INVENTARIO
         </div>
@@ -156,7 +163,7 @@ const InventoryDemo = () => {
           />
         </div>
         <div style={{ flex: 1, background: 'white', borderRadius: '8px', boxShadow: '0 2px 5px rgba(0,0,0,0.05)', padding: '10px', overflowY: 'auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 0.5fr', padding: '10px', borderBottom: '2px solid #f0f0f0', fontWeight: 'bold', color: '#7f8c8d', fontSize: '0.9rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'minmax(40%, 2fr) minmax(20%, 1fr) minmax(15%, 1fr) minmax(10%, 0.5fr)', padding: '10px', borderBottom: '2px solid #f0f0f0', fontWeight: 'bold', color: '#7f8c8d', fontSize: '0.9rem' }}>
             <span>Nombre</span>
             <span>Categoría</span>
             <span>Stock</span>
