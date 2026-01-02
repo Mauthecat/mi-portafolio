@@ -96,8 +96,15 @@ const PerfilContent = ({ onClose }) => {
               </h3>
 
               <div style={{ marginTop: '20px', color: '#ccc', fontSize: '1rem', lineHeight: '1.6', textAlign: 'justify' }}>
-                  <p>Soy estudiante de informática a punto de titularme. Me considero una persona trabajadora y responsable, con ganas de aprender y aportar en lo que sea necesario.</p>
-                  <p>En mi experiencia laboral, trabajé como <strong>Front End Developer</strong> desarrollando interfaces visuales y como <strong>Soporte TI</strong> en <em>MPG (Codelco)</em>.</p>
+                  <p>
+                      Soy estudiante de informática a punto de titularme. Me considero una persona trabajadora y responsable, con ganas de aprender y aportar en lo que sea necesario.
+                  </p>
+                  <p>
+                      En mi experiencia laboral, trabajé como <strong>Front End Developer</strong> en <em>Solutions OS</em> desarrollando el apartado visual para proyectos como neumaticospro.cl. Anteriormente, cubrí un puesto de <strong>Soporte TI</strong> en <em>MPG (Codelco)</em>, encargándome de la mantención de equipos y soporte a usuarios.
+                  </p>
+                  <p>
+                      Cuento con conocimientos variados, desde el desarrollo de software hasta infraestructura y soporte técnico.
+                  </p>
               </div>
 
               <div style={{ marginTop: '20px' }}>
@@ -156,7 +163,7 @@ const PerfilContent = ({ onClose }) => {
       </div>
 
       {/* ESPACIADOR FINAL: La clave para que el margin funcione siempre */}
-      <div style={{ height: '20px', width: '100%', flexShrink: 0 }}></div>
+      <div style={{ height: '4px', width: '100%', flexShrink: 0 }}></div>
 
       {!isMobile && (
         <motion.div 
