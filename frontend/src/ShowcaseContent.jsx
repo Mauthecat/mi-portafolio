@@ -15,7 +15,8 @@ const MobileStyles = () => (
       .mobile-grid { grid-template-columns: 1fr 1fr !important; }
       .mobile-inventory-grid { grid-template-columns: 1.5fr 1fr 0.5fr !important; font-size: 0.8rem !important; }
       .mobile-header { padding: 10px !important; }
-      .mobile-title { font-size: 1.5rem !important; }
+      .mobile-title { font-size: 1.4rem !important; margin-bottom: 5px !important; }
+      .mobile-desc { font-size: 0.9rem !important; padding: 0 10px !important; line-height: 1.2 !important; }
       .mobile-card-stack { grid-template-columns: 1fr !important; }
       .mobile-nav-arrows { padding: 8px !important; }
     }
@@ -75,7 +76,7 @@ const EcommerceDemo = () => {
         <div className="mobile-full-width" style={{ flex: 1, background: 'white', borderRadius: '10px', padding: '15px' }}>
           <h4 style={{ margin: '0 0 10px 0', fontSize: '0.9rem' }}>Categorías</h4>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '5px', fontSize: '0.8rem' }}>
-            <span>👟 Zapatillas</span><span>💻 Tecnología</span>
+             <span>👟 Zapatillas</span><span>💻 Tecnología</span>
           </div>
         </div>
       </div>
@@ -84,7 +85,7 @@ const EcommerceDemo = () => {
 };
 
 const InventoryDemo = () => {
-  const [items, setItems] = useState([
+  const [items] = useState([
     { id: 1, name: 'Monitor 24"', stock: 15, cat: 'Hardware' },
     { id: 2, name: 'Teclado', stock: 8, cat: 'Perifer.' },
     { id: 3, name: 'Mouse', stock: 22, cat: 'Perifer.' },
@@ -109,7 +110,7 @@ const InventoryDemo = () => {
               <span style={{ fontSize: '0.85rem' }}>{item.name}</span>
               <span className="mobile-hide" style={{ fontSize: '0.7rem' }}>{item.cat}</span>
               <span style={{ color: '#27ae60', fontWeight: 'bold' }}>{item.stock}</span>
-              <FaTrash style={{ color: '#e74c3c', cursor: 'pointer' }} />
+              <FaTrash style={{ color: '#e74c3c' }} />
             </div>
           ))}
         </div>
@@ -125,13 +126,12 @@ const VideoDemo = () => (
     </div>
     <div style={{ flex: 1, padding: '10px' }}>
       <h3 style={{ fontSize: '1rem', margin: '0 0 5px 0' }}>IA & Python</h3>
-      <p style={{ fontSize: '0.85rem', color: '#555', margin: 0 }}>Detección de rostros y análisis de datos avanzado.</p>
+      <p style={{ fontSize: '0.85rem', color: '#555', margin: 0 }}>Detección de rostros y análisis avanzado.</p>
     </div>
   </div>
 );
 
 const DashboardDemo = () => {
-  const [range] = useState('Semana');
   const stats = [
     { label: 'Users', val: '1.2k', col: '#3498db', icon: <FaUsers /> },
     { label: 'Sales', val: '$45k', col: '#e67e22', icon: <FaChartLine /> },
@@ -190,13 +190,12 @@ const ShowcaseContent = ({ onClose }) => {
       color: '#ecf0f1'
     }
   ];
-  const nextDemo = () => setCurrentIndex((prev) => (prev + 1) % demos.length);
-  const prevDemo = () => setCurrentIndex((prev) => (prev - 1 + demos.length) % demos.length);
 
   return (
     <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', padding: '0 1%', overflowX: 'hidden' }}>
       <MobileStyles />
-
+      
+      {/* Breadcrumb */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'rgba(255,255,255,0.4)', fontSize: '0.8rem', margin: '10px 0' }}>
         <span onClick={onClose} style={{ cursor: 'pointer' }}><FaHome /> Inicio</span>
         <FaChevronRight /> <span style={{ color: 'white' }}>Showcase</span>
@@ -214,6 +213,8 @@ const ShowcaseContent = ({ onClose }) => {
         <div style={{ width: '100%', height: '98%', maxWidth: '1000px', display: 'flex', flexDirection: 'column' }}>
           <div style={{ textAlign: 'center', marginBottom: '10px' }}>
             <h2 className="mobile-title" style={{ fontSize: '2rem', color: '#3498db', margin: 0 }}>{demos[currentIndex].title}</h2>
+            {/* AQUÍ SE RESTAURÓ EL TEXTO DESCRIPTIVO */}
+            <p className="mobile-desc" style={{ fontSize: '1.1rem', color: '#ccc', margin: '5px 0' }}>{demos[currentIndex].desc}</p>
           </div>
 
           <div style={{ flex: 1, background: demos[currentIndex].color, borderRadius: '15px', padding: '10px', overflow: 'hidden', boxShadow: '0 5px 20px rgba(0,0,0,0.3)', position: 'relative', width: '100%' }}>
@@ -221,26 +222,8 @@ const ShowcaseContent = ({ onClose }) => {
               <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ff5f56' }}></div>
               <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ffbd2e' }}></div>
             </div>
-            <div
-              style={{
-                marginTop: '20px',
-                height: 'calc(100% - 20px)',
-                width: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'stretch'
-              }}
-            >
-              <div
-                style={{
-                  width: '100%',
-                  maxWidth: '100%',
-                  height: '100%',
-                  display: 'flex'
-                }}
-              >
-                {demos[currentIndex].component}
-              </div>
+            <div style={{ marginTop: '15px', height: 'calc(100% - 15px)', width: '100%' }}>
+              {demos[currentIndex].component}
             </div>
           </div>
         </div>
