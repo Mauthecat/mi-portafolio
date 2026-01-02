@@ -79,7 +79,7 @@ const FondoAnimado = () => {
       {/* 1. LAYER CANVAS (Matrix) */}
       <canvas 
         ref={canvasRef} 
-        style={{ position: 'absolute', top: 0, left: 0, opacity: 0.5, filter: 'blur(1px)' }} 
+        style={{ position: 'absolute', top: 0, left: 0, opacity: 0.9, filter: 'blur(1px)' }} 
       />
 
       {/* 2. LAYER PULSO DE LUZ (Glow) */}
