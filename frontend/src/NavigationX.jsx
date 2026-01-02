@@ -83,7 +83,8 @@ const NavigationX = () => {
           width: 'min(75vmin, 650px)', 
           height: 'min(75vmin, 650px)',
           zIndex: 10, 
-          pointerEvents: selectedId ? 'none' : 'auto'
+          pointerEvents: selectedId ? 'none' : 'auto',
+          visibility: selectedId ? 'hidden' : 'visible'
         }}
       >
         {sections.map((section) => (
@@ -132,18 +133,20 @@ const NavigationX = () => {
       </motion.div>
 
       {/* VISTA EXPANDIDA */}
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {selectedId && (
           <motion.div
+            key={selectedId}
             layoutId={selectedId}
             initial={{ rotate: 45, scale: 0.8, opacity: 0 }} 
             animate={{ rotate: 0, scale: 1, opacity: 1 }} 
-            exit={{ rotate: 45, scale: 0.8, opacity: 0 }}
+            exit={{ rotate: 45, scale: 0.8, opacity: 0, transition: { duration: 0.2 } }}
             style={{ 
               position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', 
               background: sections.find(s => s.id === selectedId).color, 
-              zIndex: 50, display: 'flex', flexDirection: 'column', 
-              padding: 'clamp(10px, 3vw, 40px)', overflowY: 'hidden' 
+              zIndex: 100, display: 'flex', flexDirection: 'column', 
+              padding: 'clamp(10px, 3vw, 40px)', overflowY: 'hidden',
+              pointerEvents: 'auto'
             }}
           >
             <div style={{ width: '100%', height: '100%', maxWidth: '1400px', margin: '0 auto', display: 'flex', flexDirection: 'column' }}>
