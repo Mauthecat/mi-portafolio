@@ -142,7 +142,8 @@ const PerfilContent = ({ onClose }) => {
             minHeight: isMobile ? '350px' : 'auto',
             order: isMobile ? 2 : 1,
             // CAMBIO AQUÍ: Margen constante para todas las vistas
-            marginBottom: '20px' 
+            marginBottom: '20px',
+            paddingBottom: '20px' 
           }}
           >
           <div style={{ padding: '12px', background: 'rgba(0,0,0,0.4)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
