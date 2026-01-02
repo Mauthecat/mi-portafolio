@@ -20,7 +20,7 @@ const Briefcase = ({ onOpen }) => {
       }}
     >
       <motion.div
-        whileHover={{ scale: 1.1, rotate: 5, color: '#e67e22' }}
+        whileHover={{ scale: 2.1, rotate: 5, color: '#e67e22' }}
         whileTap={{ scale: 0.9 }}
         initial={{ scale: 0, y: -100 }}
         animate={{ scale: 1, y: 0 }}
