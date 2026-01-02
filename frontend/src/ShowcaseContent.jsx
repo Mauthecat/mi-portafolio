@@ -45,7 +45,7 @@ const EcommerceDemo = () => {
   return (
     <div className="demo-container-internal" style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', background: '#f8f9fa' }}>
       <div style={{ background: '#fff', padding: '15px 30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', boxShadow: '0 2px 10px rgba(0,0,0,0.05)' }}>
-        <div style={{ fontWeight: '900', fontSize: '1.2rem', color: '#333' }}>SHOP<span style={{ color: '#e74c3c' }}>ify</span></div>
+        <div style={{ fontWeight: '900', fontSize: '1.2rem', color: '#333' }}>TIENDA<span style={{ color: '#e74c3c' }}>under</span></div>
         <div style={{ display: 'flex', gap: '20px', fontSize: '0.9rem', color: '#555', fontWeight: '500' }}>
           <span style={{ cursor: 'pointer', color: '#000' }}>Inicio</span>
           <span style={{ cursor: 'pointer' }}>Productos</span>
